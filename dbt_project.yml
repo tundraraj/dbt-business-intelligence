@@ -26,8 +26,7 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-vars:
-  dbt_metrics_calendar_model: dim_date
+vars:  
   dbt_constraints_enabled: false
   company_name: 'Bigstore Enterprises'
   company_start_date: '2019-01-01'
@@ -45,12 +44,7 @@ models:
     staging:
       +schema: staging
       +materialized: view
-    metrics:
-      +enabled: "{{ false if target.type == 'sqlserver' else true }}" # sqlserver does not allow nested CTE's, which metrics require
-  metrics:
-    dbt_metrics_default_calendar:
-      +schema: staging
-      +enabled: false
+
 
 seeds:
   dbt_business_intelligence:
